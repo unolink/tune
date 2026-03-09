@@ -1,4 +1,4 @@
-package templategolib
+package tune
 
 import "testing"
 
