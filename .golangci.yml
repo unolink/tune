@@ -1,0 +1,29 @@
+version: "2"
+
+linters:
+  default: none
+  enable:
+    - errcheck
+    - govet
+    - staticcheck
+    - unused
+    - misspell
+    - revive
+    - gocritic
+    - bodyclose
+    - noctx
+
+  settings:
+    revive:
+      rules:
+        - name: exported
+          arguments:
+            - "checkPrivateReceivers"
+    gocritic:
+      enabled-tags:
+        - diagnostic
+        - style
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0

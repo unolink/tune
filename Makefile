@@ -1,0 +1,26 @@
+.PHONY: test test-ci lint lint-full bench fuzz clean
+
+test:
+	go test ./...
+
+test-ci:
+	go test -race -coverprofile=coverage.out ./...
+
+lint:
+	go fmt ./...
+	go vet ./...
+
+lint-full: lint
+	golangci-lint run ./...
+
+nilcheck:
+	nilaway ./...
+
+bench:
+	go test -bench=. -benchmem ./...
+
+fuzz:
+	go test -fuzz=. -fuzztime=$(or $(FUZZ_TIME),30s) ./...
+
+clean:
+	rm -f coverage.out
